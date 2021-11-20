@@ -13,6 +13,7 @@
 		3770EED0274642D000BD5771 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3770EECE274642D000BD5771 /* Main.storyboard */; };
 		3770EED2274642D100BD5771 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3770EED1274642D100BD5771 /* Assets.xcassets */; };
 		3770EED5274642D100BD5771 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3770EED3274642D100BD5771 /* LaunchScreen.storyboard */; };
+		9A87B11D274924F500CB7276 /* LaizyMessageLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A87B11C274924F500CB7276 /* LaizyMessageLogo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		3770EED1274642D100BD5771 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3770EED4274642D100BD5771 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3770EED6274642D100BD5771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A87B11C274924F500CB7276 /* LaizyMessageLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LaizyMessageLogo.png; path = ../../LaizyMessageLogo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				3770EED1274642D100BD5771 /* Assets.xcassets */,
 				3770EED3274642D100BD5771 /* LaunchScreen.storyboard */,
 				3770EED6274642D100BD5771 /* Info.plist */,
+				9A87B11C274924F500CB7276 /* LaizyMessageLogo.png */,
 			);
 			path = LazyMessages;
 			sourceTree = "<group>";
@@ -126,6 +129,7 @@
 			files = (
 				3770EED5274642D100BD5771 /* LaunchScreen.storyboard in Resources */,
 				3770EED2274642D100BD5771 /* Assets.xcassets in Resources */,
+				9A87B11D274924F500CB7276 /* LaizyMessageLogo.png in Resources */,
 				3770EED0274642D000BD5771 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -284,8 +288,9 @@
 		3770EEDA274642D100BD5771 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = LazyMessages/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -302,8 +307,9 @@
 		3770EEDB274642D100BD5771 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = LazyMessages/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
