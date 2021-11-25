@@ -22,6 +22,7 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         navigationController?.navigationBar.barStyle = .black
     }
+    
 
 }
 
