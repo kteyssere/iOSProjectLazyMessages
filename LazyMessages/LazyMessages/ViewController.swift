@@ -23,6 +23,5 @@ class ViewController: UIViewController {
         navigationController?.navigationBar.barStyle = .black
     }
 
-
 }
 
