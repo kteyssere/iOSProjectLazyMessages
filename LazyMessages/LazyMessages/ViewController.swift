@@ -9,10 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -22,7 +20,10 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         navigationController?.navigationBar.barStyle = .black
     }
+<<<<<<< HEAD
     
 
+=======
+>>>>>>> c0eff60fb3448a7ff906ed53c1681eb2b706d311
 }
 
