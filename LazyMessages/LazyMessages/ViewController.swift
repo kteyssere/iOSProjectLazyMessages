@@ -11,6 +11,9 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        let defaults = UserDefaults.standard
+//        defaults.set(0, forKey: "nbMessages")
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -21,4 +24,3 @@ class ViewController: UIViewController {
         navigationController?.navigationBar.barStyle = .black
     }
 }
-

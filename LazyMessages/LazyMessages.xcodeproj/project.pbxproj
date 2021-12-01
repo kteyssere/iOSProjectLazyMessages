@@ -16,6 +16,9 @@
 		378E53D8274FBF7B00F08176 /* Bukhari Script.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 378E53D7274FBF7B00F08176 /* Bukhari Script.ttf */; };
 		37E778DA274FDEF100DFAD68 /* CreateMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E778D9274FDEF100DFAD68 /* CreateMessageViewController.swift */; };
 		37E778DC274FF3F400DFAD68 /* Capture d’écran 2021-11-25 à 17.38.17.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E778DB274FF3F400DFAD68 /* Capture d’écran 2021-11-25 à 17.38.17.png */; };
+		37EE63F227576285009389D2 /* ListMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EE63F127576285009389D2 /* ListMessageViewController.swift */; };
+		37EE63F42757C2A4009389D2 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EE63F32757C2A4009389D2 /* MessageTableViewCell.swift */; };
+		37EE63F62757CB7F009389D2 /* InfosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EE63F52757CB7F009389D2 /* InfosViewController.swift */; };
 		9A87B11D274924F500CB7276 /* LaizyMessageLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A87B11C274924F500CB7276 /* LaizyMessageLogo.png */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +34,9 @@
 		378E53D7274FBF7B00F08176 /* Bukhari Script.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bukhari Script.ttf"; sourceTree = "<group>"; };
 		37E778D9274FDEF100DFAD68 /* CreateMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMessageViewController.swift; sourceTree = "<group>"; };
 		37E778DB274FF3F400DFAD68 /* Capture d’écran 2021-11-25 à 17.38.17.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Capture d’écran 2021-11-25 à 17.38.17.png"; sourceTree = "<group>"; };
+		37EE63F127576285009389D2 /* ListMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMessageViewController.swift; sourceTree = "<group>"; };
+		37EE63F32757C2A4009389D2 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
+		37EE63F52757CB7F009389D2 /* InfosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfosViewController.swift; sourceTree = "<group>"; };
 		9A87B11C274924F500CB7276 /* LaizyMessageLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LaizyMessageLogo.png; path = ../../LaizyMessageLogo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,17 +70,20 @@
 		3770EEC7274642D000BD5771 /* LazyMessages */ = {
 			isa = PBXGroup;
 			children = (
-				3770EEC8274642D000BD5771 /* AppDelegate.swift */,
-				3770EECA274642D000BD5771 /* SceneDelegate.swift */,
-				3770EECC274642D000BD5771 /* ViewController.swift */,
-				37E778D9274FDEF100DFAD68 /* CreateMessageViewController.swift */,
-				3770EECE274642D000BD5771 /* Main.storyboard */,
-				378E53D7274FBF7B00F08176 /* Bukhari Script.ttf */,
-				3770EED1274642D100BD5771 /* Assets.xcassets */,
-				3770EED3274642D100BD5771 /* LaunchScreen.storyboard */,
 				3770EED6274642D100BD5771 /* Info.plist */,
 				37E778DB274FF3F400DFAD68 /* Capture d’écran 2021-11-25 à 17.38.17.png */,
 				9A87B11C274924F500CB7276 /* LaizyMessageLogo.png */,
+				3770EEC8274642D000BD5771 /* AppDelegate.swift */,
+				37E778D9274FDEF100DFAD68 /* CreateMessageViewController.swift */,
+				37EE63F127576285009389D2 /* ListMessageViewController.swift */,
+				3770EECA274642D000BD5771 /* SceneDelegate.swift */,
+				3770EECC274642D000BD5771 /* ViewController.swift */,
+				378E53D7274FBF7B00F08176 /* Bukhari Script.ttf */,
+				3770EED1274642D100BD5771 /* Assets.xcassets */,
+				3770EED3274642D100BD5771 /* LaunchScreen.storyboard */,
+				3770EECE274642D000BD5771 /* Main.storyboard */,
+				37EE63F32757C2A4009389D2 /* MessageTableViewCell.swift */,
+				37EE63F52757CB7F009389D2 /* InfosViewController.swift */,
 			);
 			path = LazyMessages;
 			sourceTree = "<group>";
@@ -154,8 +163,11 @@
 			files = (
 				37E778DA274FDEF100DFAD68 /* CreateMessageViewController.swift in Sources */,
 				3770EECD274642D000BD5771 /* ViewController.swift in Sources */,
+				37EE63F227576285009389D2 /* ListMessageViewController.swift in Sources */,
 				3770EEC9274642D000BD5771 /* AppDelegate.swift in Sources */,
 				3770EECB274642D000BD5771 /* SceneDelegate.swift in Sources */,
+				37EE63F42757C2A4009389D2 /* MessageTableViewCell.swift in Sources */,
+				37EE63F62757CB7F009389D2 /* InfosViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
