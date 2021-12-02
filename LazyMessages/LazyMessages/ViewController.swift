@@ -55,8 +55,8 @@ class ViewController: UIViewController, MFMessageComposeViewControllerDelegate {
                 controller.recipients = [savedMessage.destinataire]
                 
                 print(controller)
-                print(savedMessage.contenu)
-                print(savedMessage.destinataire!)
+                print(controller.body!)
+                print(controller.recipients!)
                 
                 controller.messageComposeDelegate = self
                 self.present(controller, animated: true, completion: nil)
@@ -75,4 +75,5 @@ class ViewController: UIViewController, MFMessageComposeViewControllerDelegate {
         print(result)
         
     }
+    
 }

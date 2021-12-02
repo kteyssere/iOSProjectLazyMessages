@@ -25,6 +25,10 @@ class CreateMessageViewController: UIViewController, UIPickerViewDataSource, UIP
         let thePicker = UIPickerView()
         recurrenceTextfield.inputView = thePicker
         thePicker.delegate = self
+        
+        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tapGesture)
+        tapGesture.cancelsTouchesInView = false
     }
 
 
