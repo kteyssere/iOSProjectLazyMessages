@@ -27,11 +27,14 @@ class InfosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/YYYY hh:mm"
+        print(titre!)
+        print(destinataire!)
         titreLabel.text = titre
         destinataireLabel.text = destinataire
         contenuLabel.text = contenu
-//        dateLabel.text = date
+        dateLabel.text = dateFormatter.string(from: date!)
         recurrenceLabel.text = recurrence
     }
 }

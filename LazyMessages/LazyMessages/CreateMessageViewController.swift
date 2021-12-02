@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class CreateMessageViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class CreateMessageViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, MFMessageComposeViewControllerDelegate {
     
     @IBOutlet weak var titreTextField: UITextField!
     @IBOutlet weak var destinataireTextField:UITextField!
@@ -16,6 +17,7 @@ class CreateMessageViewController: UIViewController, UIPickerViewDataSource, UIP
     @IBOutlet weak var recurrenceTextfield: UITextField!
     
     var pickerData: [String] = [String]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,9 +46,17 @@ class CreateMessageViewController: UIViewController, UIPickerViewDataSource, UIP
         recurrenceTextfield.text = valueSelected
     }
     
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        print(result)
+        
+    }
+    
     @IBAction func onButtonClicked(_ sender: UIButton) {
         
         let message = Message(titre: titreTextField.text!, destinataire: destinataireTextField.text!, contenu: contenuTextField.text!, date: dateDatePicker.date, recurrence: recurrenceTextfield.text!)
+        if message.titre != "" && message.destinataire != "" && message.contenu != "" && message.date != nil && message.recurrence != ""  {
+            
+        
         do {
             let encodedData = try NSKeyedArchiver.archivedData(withRootObject: message, requiringSecureCoding: false)
             let defaults = UserDefaults.standard
@@ -59,14 +69,7 @@ class CreateMessageViewController: UIViewController, UIPickerViewDataSource, UIP
 
             defaults.set(encodedData, forKey: key)
             
-            /*let sms = MFMessageComposeViewController()
-             sms.messageComposeDelegate = self
-             
-             sms.recipients = [destinataire: destinataireTextField.text!]
-             sms.body = contenu: contenuTextField.text!
-             
-             self.presentViewController(sms, animated: true, completion: nil)*/
-            
+            self.savedSms(message: message, idMessage: key)
             
         } catch {
             
@@ -74,9 +77,30 @@ class CreateMessageViewController: UIViewController, UIPickerViewDataSource, UIP
             
         }
         
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let listVC = storyboard.instantiateViewController(withIdentifier: "listVC")
         self.navigationController?.pushViewController(listVC, animated: true)
+        
+        } else {
+            
+            print("Veuillez completer les champs !")
+            
+        }
+    }
+    
+    func savedSms(message: Message, idMessage: String) {
+                
+        let manager = LocalNotificationManager()
+        
+        let date = message.date
+        let comps = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: date!)
+        
+        let myNotif = LocalNotificationManager.Notification(id: idMessage, title: "Le message "+titreTextField.text!+" est en attente d'envoi", datetime: comps)
+        
+        manager.notifications = [myNotif]
+
+        manager.schedule()
     }
 }
 
@@ -110,5 +134,72 @@ class Message: NSObject, NSCoding {
         self.contenu = contenu
         self.date = date
         self.recurrence = recurrence
+    }
+}
+
+class LocalNotificationManager
+{
+    var notifications = [Notification]()
+    
+    struct Notification {
+        var id: String
+        var title: String
+        var datetime: DateComponents
+    }
+    
+    func listScheduledNotifications()
+    {
+        UNUserNotificationCenter.current().getPendingNotificationRequests { notifications in
+
+            for notification in notifications {
+                print(notification)
+            }
+        }
+    }
+    
+    private func requestAuthorization()
+    {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+
+            if granted == true && error == nil {
+                self.scheduleNotifications()
+            }
+        }
+    }
+    
+    func schedule()
+    {
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+
+            switch settings.authorizationStatus {
+            case .notDetermined:
+                self.requestAuthorization()
+            case .authorized, .provisional:
+                self.scheduleNotifications()
+            default:
+                break // Do nothing
+            }
+        }
+    }
+    
+    private func scheduleNotifications()
+    {
+        for notification in notifications
+        {
+            let content      = UNMutableNotificationContent()
+            content.title    = notification.title
+            content.sound    = .default
+
+            let trigger = UNCalendarNotificationTrigger(dateMatching: notification.datetime, repeats: false)
+
+            let request = UNNotificationRequest(identifier: notification.id, content: content, trigger: trigger)
+
+            UNUserNotificationCenter.current().add(request) { error in
+
+                guard error == nil else { return }
+
+                print("Notification scheduled! --- ID = \(notification.id)")
+            }
+        }
     }
 }

@@ -65,7 +65,7 @@ class ListMessageViewController: UIViewController, UITableViewDelegate, UITableV
             let savedMessage = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(savedMessageData as! Data) as! Message
             
             infosVC.titre = savedMessage.titre
-            infosVC.destinataire = savedMessage.titre
+            infosVC.destinataire = savedMessage.destinataire
             infosVC.contenu = savedMessage.contenu
             infosVC.date = savedMessage.date
             infosVC.recurrence = savedMessage.recurrence
@@ -82,4 +82,6 @@ class ListMessageViewController: UIViewController, UITableViewDelegate, UITableV
         self.navigationController?.pushViewController(infosVC, animated: true)
         
     }
+    
+    
 }
