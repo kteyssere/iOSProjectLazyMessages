@@ -28,7 +28,7 @@ class InfosViewController: UIViewController {
         super.viewDidLoad()
 
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/YYYY hh:mm"
+        dateFormatter.dateFormat = "dd/MM/YYYY HH:mm"
         print(titre!)
         print(destinataire!)
         titreLabel.text = titre

@@ -83,5 +83,14 @@ class ListMessageViewController: UIViewController, UITableViewDelegate, UITableV
         
     }
     
+    @IBAction func onButtonClicked(_ sender: UIButton) {
+        
+        let defaults = UserDefaults.standard
+        defaults.set(0, forKey: "nbMessages")
+        
+        tableView.reloadData()
+        
+    }
+    
     
 }
