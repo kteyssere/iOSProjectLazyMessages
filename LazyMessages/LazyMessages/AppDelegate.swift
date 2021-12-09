@@ -38,6 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let defaults = UserDefaults.standard
         defaults.setValue(id, forKey: "SmsToSendFromNotif")
         
+		NotificationCenter.default.post(name: Notification.Name("SmsToSendFromNotif"), object: nil)
+		
         completionHandler()
     }
     
