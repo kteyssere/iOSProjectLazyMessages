@@ -13,19 +13,23 @@ class ViewController: UIViewController, MFMessageComposeViewControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+		NotificationCenter.default.addObserver(self, selector: #selector(ViewController.messageToSend(notification:)), name: Notification.Name("SmsToSendFromNotif"), object: nil)
+		
 //        let defaults = UserDefaults.standard
 //        defaults.set(0, forKey: "nbMessages")
     }
     
+	@objc func messageToSend(notification: Notification) {
+		let defaults = UserDefaults.standard
+		if let idToSend = defaults.string(forKey: "SmsToSendFromNotif") {
+			sendSms(idMessage: idToSend)
+		}
+	}
+	
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        let defaults = UserDefaults.standard
-        if let idToSend = defaults.string(forKey: "SmsToSendFromNotif") {
-            sendSms(idMessage: idToSend)
-        }
     }
-    
+	
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -61,6 +65,8 @@ class ViewController: UIViewController, MFMessageComposeViewControllerDelegate {
                 controller.messageComposeDelegate = self
                 self.present(controller, animated: true, completion: nil)
                 
+				defaults.removeObject(forKey: "SmsToSendFromNotif")
+				
             } else {
                 print("Erreur d'envoi !")
             }
