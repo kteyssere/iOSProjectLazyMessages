@@ -2,7 +2,7 @@
 //  CreateMessageViewController.swift
 //  LazyMessages
 //
-//  Created by Brandon Reynier on 25/11/2021.
+//  Created by Brandon Reynier and Karina Teyssere on 25/11/2021.
 //
 
 import UIKit
@@ -15,20 +15,24 @@ class CreateMessageViewController: UIViewController, UIPickerViewDataSource, UIP
     @IBOutlet weak var contenuTextField:UITextField!
     @IBOutlet weak var dateDatePicker:UIDatePicker!
     @IBOutlet weak var recurrenceTextfield: UITextField!
+    @IBOutlet weak var createButton: UIButton!
     
+    //Pour la récurrence (non affichée)
     var pickerData: [String] = [String]()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         pickerData = ["Aucune", "Quotidien", "Hebdomadaire", "Mensuel", "Annuel"]
         let thePicker = UIPickerView()
-        recurrenceTextfield.inputView = thePicker
+        //recurrenceTextfield.inputView = thePicker
         thePicker.delegate = self
         
         let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tapGesture)
         tapGesture.cancelsTouchesInView = false
+        
+        createButton.layer.cornerRadius = 10
+        
     }
 
 
@@ -36,29 +40,34 @@ class CreateMessageViewController: UIViewController, UIPickerViewDataSource, UIP
         return 1
     }
     
+    //PickerView de la recurrence (non affichée)
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return pickerData.count
     }
     
+    //PickerView de la recurrence (non affichée)
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         return pickerData[row]
     }
     
+    //PickerView de la recurrence (non affichée)
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let valueSelected = pickerData[row]
         recurrenceTextfield.text = valueSelected
     }
+    
     
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         print(result)
         
     }
     
+    //Création du message après avoir cliqué sur le bouton 'créer'
     @IBAction func onButtonClicked(_ sender: UIButton) {
         
-        let message = Message(titre: titreTextField.text!, destinataire: destinataireTextField.text!, contenu: contenuTextField.text!, date: dateDatePicker.date, recurrence: recurrenceTextfield.text!)
-        if message.titre != "" && message.destinataire != "" && message.contenu != "" && message.date != nil && message.recurrence != ""  {
+        let message = Message(titre: titreTextField.text!, destinataire: destinataireTextField.text!, contenu: contenuTextField.text!, date: dateDatePicker.date)
+        if message.titre != "" && message.destinataire != "" && message.contenu != "" && message.date != nil  {
             
         
         do {
@@ -93,6 +102,7 @@ class CreateMessageViewController: UIViewController, UIPickerViewDataSource, UIP
         }
     }
     
+    //Creation de la notif a la date completée par l'utilisateur
     func savedSms(message: Message, idMessage: String) {
                 
         let manager = LocalNotificationManager()
@@ -108,6 +118,7 @@ class CreateMessageViewController: UIViewController, UIPickerViewDataSource, UIP
     }
 }
 
+//Classe de l'objet message
 class Message: NSObject, NSCoding {
     
     func encode(with coder: NSCoder) {
@@ -115,7 +126,6 @@ class Message: NSObject, NSCoding {
         coder.encode(destinataire, forKey: "destinataire")
         coder.encode(contenu, forKey: "contenu")
         coder.encode(date, forKey: "date")
-        coder.encode(recurrence, forKey: "recurrence")
     }
     
     required init?(coder: NSCoder) {
@@ -123,21 +133,18 @@ class Message: NSObject, NSCoding {
         destinataire = coder.decodeObject(forKey: "destinataire") as? String
         contenu = coder.decodeObject(forKey: "contenu") as? String
         date = coder.decodeObject(forKey: "date") as? Date
-        recurrence = coder.decodeObject(forKey: "recurrence") as? String
     }
     
     var titre: String!
     var destinataire: String!
     var contenu: String!
     var date: Date!
-    var recurrence: String!
     
-    init(titre: String, destinataire: String, contenu: String, date: Date, recurrence: String) {
+    init(titre: String, destinataire: String, contenu: String, date: Date) {
         self.titre = titre
         self.destinataire = destinataire
         self.contenu = contenu
         self.date = date
-        self.recurrence = recurrence
     }
 }
 

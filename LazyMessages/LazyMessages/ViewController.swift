@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  LazyMessages
 //
-//  Created by Brandon Reynier on 18/11/2021.
+//  Created by Brandon Reynier and Karina Teyssere on 18/11/2021.
 //
 
 import UIKit
@@ -10,6 +10,9 @@ import MessageUI
 
 class ViewController: UIViewController, MFMessageComposeViewControllerDelegate {
 
+    @IBOutlet weak var createPage: UIButton!
+    @IBOutlet weak var listPage: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -17,6 +20,9 @@ class ViewController: UIViewController, MFMessageComposeViewControllerDelegate {
 		
 //        let defaults = UserDefaults.standard
 //        defaults.set(0, forKey: "nbMessages")
+        
+        createPage.layer.cornerRadius = 10
+        listPage.layer.cornerRadius = 10
     }
     
 	@objc func messageToSend(notification: Notification) {
@@ -24,6 +30,8 @@ class ViewController: UIViewController, MFMessageComposeViewControllerDelegate {
 		if let idToSend = defaults.string(forKey: "SmsToSendFromNotif") {
 			sendSms(idMessage: idToSend)
 		}
+       
+        
 	}
 	
     override func viewWillAppear(_ animated: Bool) {
@@ -38,13 +46,10 @@ class ViewController: UIViewController, MFMessageComposeViewControllerDelegate {
         navigationController?.navigationBar.barStyle = .black
     }
     
+    //Envoi du sms
     func sendSms(idMessage: String) {
-        
-//        //TODO
-//        // 1- Get id message
-//        let idMessage = "SavedMessage1"
-        
-        // 2- Get Message from UserDefaults
+
+        // 1- Get Message from UserDefaults
         let defaults = UserDefaults.standard
         let key = idMessage
         let savedMessageData = defaults.object(forKey: key)
@@ -52,7 +57,7 @@ class ViewController: UIViewController, MFMessageComposeViewControllerDelegate {
         do {
             let savedMessage = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(savedMessageData as! Data) as! Message
             
-            // 3- On envoie le message
+            // 2- On envoie le message
             if MFMessageComposeViewController.canSendText() {
                 let controller = MFMessageComposeViewController()
                 controller.body = savedMessage.contenu
@@ -80,7 +85,7 @@ class ViewController: UIViewController, MFMessageComposeViewControllerDelegate {
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         print(result)
         
+        self.dismiss(animated: true)
+        
     }
-    
-    
 }

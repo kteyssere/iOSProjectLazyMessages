@@ -2,7 +2,7 @@
 //  InfosViewController.swift
 //  LazyMessages
 //
-//  Created by Brandon Reynier on 01/12/2021.
+//  Created by Brandon Reynier and Karina Teyssere on 01/12/2021.
 //
 
 import UIKit
@@ -35,6 +35,6 @@ class InfosViewController: UIViewController {
         destinataireLabel.text = destinataire
         contenuLabel.text = contenu
         dateLabel.text = dateFormatter.string(from: date!)
-        recurrenceLabel.text = recurrence
+        
     }
 }

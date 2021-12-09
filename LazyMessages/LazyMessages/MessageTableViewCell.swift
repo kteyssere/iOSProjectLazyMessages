@@ -2,7 +2,7 @@
 //  MessageTableViewCell.swift
 //  LazyMessages
 //
-//  Created by Brandon Reynier on 01/12/2021.
+//  Created by Brandon Reynier and Karina Teyssere on 01/12/2021.
 //
 
 import UIKit
@@ -22,5 +22,6 @@ class MessageTableViewCell: UITableViewCell {
 
         
     }
+
 
 }

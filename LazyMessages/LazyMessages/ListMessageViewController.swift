@@ -2,7 +2,7 @@
 //  ListMessageViewController.swift
 //  LazyMessages
 //
-//  Created by Brandon Reynier on 01/12/2021.
+//  Created by Brandon Reynier and Karina Teyssere on 01/12/2021.
 //
 
 import UIKit
@@ -29,6 +29,7 @@ class ListMessageViewController: UIViewController, UITableViewDelegate, UITableV
         return nbMessages
     }
     
+    //Complete les lignes du tableau
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let defaults = UserDefaults.standard
@@ -52,6 +53,7 @@ class ListMessageViewController: UIViewController, UITableViewDelegate, UITableV
         return cell
     }
     
+    //Complete les info du viewController infoList
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath){
 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -68,7 +70,6 @@ class ListMessageViewController: UIViewController, UITableViewDelegate, UITableV
             infosVC.destinataire = savedMessage.destinataire
             infosVC.contenu = savedMessage.contenu
             infosVC.date = savedMessage.date
-            infosVC.recurrence = savedMessage.recurrence
 
             
             
@@ -83,6 +84,7 @@ class ListMessageViewController: UIViewController, UITableViewDelegate, UITableV
         
     }
     
+    //Supprime tout les messages de la liste
     @IBAction func onButtonClicked(_ sender: UIButton) {
         
         let defaults = UserDefaults.standard
@@ -90,6 +92,31 @@ class ListMessageViewController: UIViewController, UITableViewDelegate, UITableV
         
         tableView.reloadData()
         
+    }
+    
+    //Supprime le message selectionné de la liste
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+      
+        if editingStyle == .delete {
+        print("Deleted")
+
+          
+          let defaults = UserDefaults.standard
+          let key = "SavedMessage" + String(indexPath.row)
+        
+
+            self.tableView.beginUpdates()
+            
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            
+            let nbMessages = defaults.integer(forKey: "nbMessages")
+            let newNbMessages = nbMessages - 1
+            defaults.set(newNbMessages, forKey: "nbMessages")
+            
+            defaults.removeObject(forKey: key)
+            self.tableView.endUpdates()
+    
+      }
     }
     
     

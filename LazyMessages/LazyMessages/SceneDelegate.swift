@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  LazyMessages
 //
-//  Created by Brandon Reynier on 18/11/2021.
+//  Created by Brandon Reynier and Karina Teyssere on 18/11/2021.
 //
 
 import UIKit
